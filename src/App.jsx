@@ -32,14 +32,16 @@ export default function App()
     setNotes(prev => prev.filter(note => note.id !== id))
   }, [])
   return (
-    <Router>
-      <Navbar />
-      <Routes>
-        <Route path="/" element={<Home notes={notes} deleteNote={deleteNote} />} />
-        <Route path="/add" element={<AddNote addNote={addNote} />} />
-        <Route path="/note/:id" element={<NoteDetail notes={notes} />} />
-        <Route path="*" element={<NotFound />} />
-      </Routes>
-    </Router>
+    <Router basename="/">
+  <Navbar />
+  <main style={{ padding: '20px' }}> {/* Added wrapper for content */}
+    <Routes>
+      <Route path="/" element={<Home notes={notes} deleteNote={deleteNote} />} />
+      <Route path="/add" element={<AddNote addNote={addNote} />} />
+      <Route path="/note/:id" element={<NoteDetail notes={notes} />} />
+      <Route path="*" element={<NotFound />} />
+    </Routes>
+  </main>
+</Router>
   )
 }
